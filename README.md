@@ -1,9 +1,9 @@
-<p style="text-align:center">
+<p align=center>
   <a href="#">
     <img src="./static/images/logo.png" alt="Secret" style="width:200px;height:100px">
   </a>
 </p>
-<p style="text-align:center">
+<p align=center>
   一个定义不明的社区系统
 </p>
 
