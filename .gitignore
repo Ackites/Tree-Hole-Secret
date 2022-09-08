@@ -5,6 +5,7 @@ Desktop.ini
 
 # add
 .idea/
+migrations/
 
 # Environments
 .env
