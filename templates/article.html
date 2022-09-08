@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='wangeditor/css/article.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/article_css.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'fancybox/fancybox.css') }}">
+    <script src="{{ url_for('static', filename='js/article.js') }}"></script>
+    <script src="{{ url_for('static', filename='fancybox/fancybox.umd.js') }}"></script>
+{% endblock %}
+
+{% block title %}{{ article_model.title }}{% endblock %}
+
+{% block body %}
+    <div class="container main">
+        <div class="article_box article_box_toggles">
+            <h1 class="article_title">{{ article_model.title }}</h1>
+            <div class="author-info-block">
+                <a class="author-link" href="{{ url_for('user_blue.user_home', user_id=article_model.user.uid_md5) }}">
+                    <img style="height: 40px;width: 40px;" src="{{ article_model.user.avatar }}">
+                </a>
+                <div class="author-info-box">
+                    <div class="author-name">
+                        <a href="{{ url_for('user_blue.user_home', user_id=article_model.user.uid_md5) }}">
+                            <span>{{ article_model.user.username }}</span>
+                            <i class="iconfont icon-renzheng"></i>
+                        </a>
+                    </div>
+                    <div class="meta-box">
+                        <span>{{ article_model.add_time }}</span>
+                        <span>&nbsp;·&nbsp;&nbsp;阅读 {{ article_model.views }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="editor-content-view">
+                <div class="markdown-body">
+                    {{ article_model.content|safe }}
+                </div>
+            </div>
+            <ul class="article_sidebar">
+                <li id="like" style="position:relative;">
+                    {% if check %}
+                        <i class="iconfont icon-dianzan_kuai-copy" style="font-size: 20px;"></i>
+                        <span style="background-color: #1e80ff" class="little_box">{{ article_model.likes }}</span>
+                    {% else %}
+                        <i class="iconfont icon-dianzan_kuai" style="font-size: 20px;"></i>
+                        <span class="little_box">{{ article_model.likes }}</span>
+                    {% endif %}
+                </li>
+                <li id="comment" style="position:relative;">
+                    <i class="iconfont icon-ditu-qipao" style="font-size: 20px;"></i>
+                    <span class="little_box">{{ article_model.comments|length }}</span>
+                </li>
+            </ul>
+        </div>
+        <div class="comment_box" style="display: none;">
+            <div class="layui-form" style="margin-bottom: 30px;">
+                <div class="layui-form-item">
+                    <span style="font-size: 18px;font-weight: 600;color: #252933;">评论</span>
+                </div>
+                <div class="layui-form-item">
+                    <textarea id="textarea_1" autoHeight="true" name="comment" placeholder="输入评论（Enter换行，双击隐藏）"
+                              class="layui-textarea textarea_css"></textarea>
+                </div>
+                <div class="layui-form-item" style="display: none;" id="comment_bottom">
+                    <div class="comment_bottom">
+                        <div class="box_info">字数：<span>0</span></div>
+                        <button type="button" class="commit_comment" id="btn_1">发表评论</button>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div style="font-size: 18px;font-weight: 600;color: #252933;padding-bottom: 10px">
+                    全部评论（{{ article_model.comments|length }}）
+                </div>
+                <div class="comment_lists">
+                    {% for comment in article_model.comments|sort(attribute="likes,add_time", reverse=True) %}
+                        <div class="comments" style="margin-top: 16px;">
+                            <div class="userbox">
+                                <a class="author-avatar"
+                                   href="{{ url_for('user_blue.user_home', user_id=comment.user.uid_md5) }}">
+                                    <img style="height: 35px;width: 35px;" src="{{ comment.user.avatar }}">
+                                </a>
+                                <div class="author-info-box">
+                                    <div class="author-name" style="font-size: 14px;">
+                                        <a href="{{ url_for('user_blue.user_home', user_id=comment.user.uid_md5) }}">
+                                            <span>{{ comment.user.username }}</span>
+                                            <i class="iconfont icon-renzheng"></i>
+                                        </a>
+                                    </div>
+                                    <div class="meta-box" style="font-size: 12px;">
+                                        <span>{{ comment.add_time }}</span>
+                                    </div>
+                                    <div class="comment_content">
+                                        {{ comment.content }}
+                                    </div>
+                                    <div style="height: 10px;margin-top: 11px;">
+                                        {% if comment.likes == 0 %}
+                                            <div class="comment_df" data-comment_id="{{ comment.cid }}">
+                                                <i class="iconfont icon-dianzan"></i>
+                                                <span>点赞</span>
+                                            </div>
+                                        {% else %}
+                                            {% if g.user in comment.like_users %}
+                                                <div class="comment_df" data-comment_id="{{ comment.cid }}">
+                                                    <i class="iconfont icon-dianzan_kuai-copy"></i>
+                                                    <span style="color: #1e80ff;">{{ comment.likes }}</span>
+                                                </div>
+                                            {% else %}
+                                                <div class="comment_df" data-comment_id="{{ comment.cid }}">
+                                                    <i class="iconfont icon-dianzan"></i>
+                                                    <span>{{ comment.likes }}</span>
+                                                </div>
+                                            {% endif %}
+                                        {% endif %}
+                                        <div class="comment_df" data-comment_id="{{ comment.cid }}">
+                                            <i class="iconfont icon-huifu1"></i>
+                                            <span>回复</span>
+                                        </div>
+                                    </div>
+                                    <hr style="margin-top: 20px;margin-bottom: 0;width: 287px">
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

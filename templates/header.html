@@ -1,0 +1,53 @@
+<header class="header">
+    <a href="/">
+        <img class="logo_img" src="{{ url_for('static',filename='images/logo.png') }}" alt="Secret - 树洞"/>
+    </a>
+    <div class="container">
+        <div class="header_nav">
+            <ul class="ul_nav">
+                <li>
+                    <a href="/">首页</a>
+                </li>
+                {% for nav in nav_headers %}
+                    <li>
+                        <a href="{{ nav.url }}">{{ nav.navname }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="header_user">
+        <div class="wrap">
+            <a class="search-btn" href="#">
+                <i class="iconfont icon-sousuo"></i>
+            </a>
+            <input type="text" class="search_input" placeholder="找一找吧~">
+        </div>
+        {% if user %}
+            <button id="user_avatar" type="button"
+                    class="user_avatar_btn">
+                <img style="height: 30px;width: 30px;"
+                     src="{{ user.avatar }}">
+            </button>
+            <div class="avatar_click" style="display: none;">
+                <span class="triangle"></span>
+                <div class="div_avatar">
+                    <a class="a_avatar" href="{{ url_for('user_blue.user_home', user_id=user.uid_md5) }}">
+                        <i class="iconfont icon-zhuye"></i>我的主页
+                    </a>
+                    <a class="a_avatar" href="{{ url_for('user_blue.settings') }}">
+                        <i class="iconfont icon-shezhi"></i>设置
+                    </a>
+                    <a class="a_avatar" href="{{ url_for('user_blue.logout') }}">
+                        <i class="iconfont icon-tuichu"></i>退出
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            <button id="user_box" type="button"
+                    class="user_btn layui-btn layui-btn-radius layui-btn-primary layui-border-blue">
+                <span>登录 / 注册</span>
+            </button>
+        {% endif %}
+    </div>
+</header>

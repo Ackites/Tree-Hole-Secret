@@ -1,0 +1,255 @@
+{% extends "base.html" %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}" type="text/css">
+    <script src="{{ url_for('static', filename='js/user_home.js') }}"></script>
+{% endblock %}
+
+{% block title %}{{ user_model.username }} - Secret{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="homepage">
+            <div class="page_left">
+                <div class="page_person">
+                    <img class="user_avatar" src="{{ user_model.avatar }}" alt="用户头像">
+                    <div class="user_info">
+                        <h1 style="font-size: 27px;font-weight: 600;
+                                   line-height: 1;overflow: hidden;
+                                   text-overflow: ellipsis;white-space: nowrap;">
+                            {{ user_model.username }}
+                        </h1>
+                        <div class="user_description">
+                            <i class="iconfont icon-yuangongrenzheng" style="margin-right: 10px"></i>
+                            {{ user_model.description }}
+                        </div>
+                    </div>
+                    <div class="edi_info">
+                        {% if g.user == user_model %}
+                            <button id="edit_btn" type="button"
+                                    class="layui-btn layui-btn-primary layui-border-blue" style="border-radius: 4px;">
+                                编辑个人资料
+                            </button>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="list-block">
+                    <div class="layui-tab layui-tab-brief" lay-filter="TabBrief">
+                        <ul class="layui-tab-title">
+                            <li class="layui-this">文章 <span>{{ user_model.articles|length - user_model.articles|draft_num }}</span></li>
+                            <li>评论 <span>{{ user_model.comments|length }}</span></li>
+                            <li>赞 <span>{{ user_model.likes|length }}</span></li>
+                            {% if g.user == user_model %}
+                                <li>草稿 <span>{{ user_model.articles|draft_num }}</span></li>
+                            {% endif %}
+                        </ul>
+                        <div class="layui-tab-content">
+                            <div class="layui-tab-item layui-show">
+                                <div class="List-header">
+                                    <h4 style="font-size: 15px;font-weight: 600;">文章</h4>
+                                    <button type="button">
+                                        按时间排序
+                                        <i class="iconfont icon-shangxiajiantou"></i>
+                                    </button>
+                                </div>
+                                {% for user_article in user_model.articles|draft_ex %}
+                                    <div class="List-card">
+                                        <div class="List-card-title-box">
+                                            <a href="/article/{{ user_article.aid_md5 }}" class="List-card-title">
+                                                <div>{{ user_article.title }}</div>
+                                            </a>
+                                        </div>
+                                        <div class="List-card-container-box">
+                                            <a href="/article/{{ user_article.aid_md5 }}">
+                                                <div class="List-card-container">{{ user_article.content|ellipsis }}</div>
+                                            </a>
+                                        </div>
+                                        <div class="List-card-btn-box">
+                                            <div class="btn-item">
+                                                阅读<span>{{ user_article.views }}</span>
+                                            </div>
+                                            <div class="btn-item">
+                                                <i class="iconfont icon-dianzan"></i>
+                                                <span>{{ user_article.likes }}</span>
+                                            </div>
+                                            <div class="btn-item">
+                                                <i class="iconfont icon-huifu1"></i>
+                                                <span>{{ user_article.comments|length }}</span>
+                                            </div>
+                                            {% if g.user == user_model %}
+                                                <div class="btn-item">
+                                                    <a style="color: #056de8;font-weight:600;"
+                                                       href="/article/{{ user_article.aid_md5 }}/edit">编辑</a>
+                                                </div>
+                                                <div class="btn-item">
+                                                    <a class="article_delete"
+                                                       data-article_id="{{ user_article.aid_md5 }}"
+                                                       style="color: #ea2e2e;font-weight:600;">删除</a>
+                                                </div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            <div class="layui-tab-item">
+                                <div class="List-header">
+                                    <h4 style="font-size: 15px;font-weight: 600;">文章评论</h4>
+                                    <button type="button">
+                                        按时间排序
+                                        <i class="iconfont icon-shangxiajiantou"></i>
+                                    </button>
+                                </div>
+                                {% for user_comment in user_model.comments %}
+                                    <div class="List-card">
+                                        <div class="List-card-title-box">
+                                            <a href="/article/{{ user_comment.article.aid_md5 }}"
+                                               class="List-card-title">
+                                                <div>{{ user_comment.article.title }}</div>
+                                            </a>
+                                        </div>
+                                        <div class="List-card-container-box">
+                                            <a href="/article/{{ user_comment.article.aid_md5 }}">
+                                                <div class="List-card-container">
+                                                    <i class="iconfont icon-baojiaquotation2"></i>
+                                                    {{ user_comment.content|ellipsis }}
+                                                    <i class="iconfont icon-baojiaquotation"></i>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="List-card-btn-box">
+                                            <div class="btn-item">
+                                                阅读<span>{{ user_comment.article.views }}</span>
+                                            </div>
+                                            <div class="btn-item">
+                                                <i class="iconfont icon-dianzan"></i>
+                                                <span>{{ user_comment.article.likes }}</span>
+                                            </div>
+                                            <div class="btn-item">
+                                                <i class="iconfont icon-huifu1"></i>
+                                                <span>{{ user_comment.article.comments|length }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            <div class="layui-tab-item">
+                                <div class="List-header">
+                                    <h4 style="font-size: 15px;font-weight: 600;">文章点赞</h4>
+                                    <button type="button">
+                                        按时间排序
+                                        <i class="iconfont icon-shangxiajiantou"></i>
+                                    </button>
+                                </div>
+                                {% for user_like in user_model.likes %}
+                                    <div class="List-card">
+                                        <div class="List-card-title-box">
+                                            <a href="/article/{{ user_like.aid_md5 }}"
+                                               class="List-card-title">
+                                                <div>{{ user_like.title }}</div>
+                                            </a>
+                                        </div>
+                                        <div class="List-card-container-box">
+                                            <a href="/article/{{ user_like.aid_md5 }}">
+                                                <div class="List-card-container">
+                                                    {{ user_like.content|ellipsis }}
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="List-card-btn-box">
+                                            <div class="btn-item">
+                                                阅读<span>{{ user_like.views }}</span>
+                                            </div>
+                                            <div class="btn-item">
+                                                <i class="iconfont icon-dianzan"></i>
+                                                <span>{{ user_like.likes }}</span>
+                                            </div>
+                                            <div class="btn-item">
+                                                <i class="iconfont icon-huifu1"></i>
+                                                <span>{{ user_like.comments|length }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            {% if g.user == user_model %}
+                                <div class="layui-tab-item">
+                                    <div class="List-header">
+                                        <h4 style="font-size: 15px;font-weight: 600;">文章草稿</h4>
+                                        <button type="button">
+                                            按时间排序
+                                            <i class="iconfont icon-shangxiajiantou"></i>
+                                        </button>
+                                    </div>
+                                    {% for user_article in user_model.articles %}
+                                        {% if user_article.draft == True %}
+                                            <div class="List-card">
+                                                <div class="List-card-title-box">
+                                                    <a href="/article/{{ user_article.aid_md5 }}/edit"
+                                                       class="List-card-title">
+                                                        <div>{{ user_article.title }}</div>
+                                                    </a>
+                                                </div>
+                                                <div class="List-card-container-box">
+                                                    <a href="/article/{{ user_article.aid_md5 }}/edit">
+                                                        <div class="List-card-container">{{ user_article.content|ellipsis }}</div>
+                                                    </a>
+                                                </div>
+                                                <div class="List-card-btn-box">
+                                                    <div class="btn-item">
+                                                        阅读<span>{{ user_article.views }}</span>
+                                                    </div>
+                                                    <div class="btn-item">
+                                                        <i class="iconfont icon-dianzan"></i>
+                                                        <span>{{ user_article.likes }}</span>
+                                                    </div>
+                                                    <div class="btn-item">
+                                                        <i class="iconfont icon-huifu1"></i>
+                                                        <span>{{ user_article.comments|length }}</span>
+                                                    </div>
+                                                    {% if g.user == user_model %}
+                                                        <div class="btn-item">
+                                                            <a style="color: #056de8;font-weight:600;"
+                                                               href="/article/{{ user_article.aid_md5 }}/edit">编辑</a>
+                                                        </div>
+                                                        <div class="btn-item">
+                                                            <a class="article_delete"
+                                                               data-article_id="{{ user_article.aid_md5 }}"
+                                                               style="color: #ea2e2e;font-weight:600;">删除</a>
+                                                        </div>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="page_right">
+                <div class="top_card"></div>
+                <div class="other_info">
+                    <div>级别</div>
+                    {% if user_model.role == 0 %}
+                        <div>用户</div>
+                    {% else %}
+                        <div>管理员</div>
+                    {% endif %}
+                </div>
+                <div class="other_info">
+                    <div>状态</div>
+                    {% if user_model.ban == False %}
+                        <div>正常</div>
+                    {% else %}
+                        <div>封禁</div>
+                    {% endif %}
+                </div>
+                <div class="other_info">
+                    <div>加入时间</div>
+                    <div>{{ user_model.join_time }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='wangeditor/css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/write.css') }}">
+    <script src="{{ url_for('static', filename='wangeditor/js/index.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/write.js') }}"></script>
+{% endblock %}
+
+{% block title %}写文章 - Secret{% endblock %}
+
+{% block body %}
+    <div id="wangeditor_toolbar">
+        <div id="editor-toolbar"></div>
+    </div>
+    <div id="content">
+        <div id="editor-container">
+            <div id="title-container">
+                <input type="text" name="title" placeholder="请输入标题（最多 100个字）" autocomplete="off">
+            </div>
+            <div id="editor-text-area"></div>
+        </div>
+    </div>
+    <div id="write_footer">
+        <div class="container">
+            <div class="words">字数：<span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;正文字数识别中，发布内容不得少于10个字</div>
+            <div class="publish">
+                <button id="save_btn" type="button" class="layui-btn layui-btn-primary">保存为草稿</button>
+                <button id="publish_btn" type="button" class="layui-btn layui-btn-normal">发布</button>
+            </div>
+        </div>
+    </div>
+{% endblock %}

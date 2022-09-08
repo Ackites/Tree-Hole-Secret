@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Secret，一个发布秘密，宣泄情感的树洞，在这里你的烦恼将会得到解决。">
+    <meta name="keywords" content="秘密,secret,社区,圈子,情感,树洞">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='layui/css/layui.css') }}" type="text/css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/c/font_3571621_oqx363ykc.css" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/common.css') }}" type="text/css">
+    <script src="{{ url_for('static',filename='layui/layui.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/jquery-3.6.0.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/base.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/user_relative.js') }}"></script>
+    <script src="{{ url_for('static',filename='layui/plugin/notify.js') }}"></script>
+    {% block head %}{% endblock %}
+</head>
+<body>
+{% include  'header.html' %}
+{% block body %}{% endblock %}
+{% include 'user_login.html' %}
+{% include 'side.html' %}
+{% include 'footer.html' %}
+</body>
+</html>

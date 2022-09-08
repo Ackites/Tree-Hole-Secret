@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}" type="text/css">
+    <script src="{{ url_for('static', filename='js/user_home.js') }}"></script>
+    <script>
+        $(function () {
+            $('input[name=username]').val('{{ g.user.username }}');
+            $('textarea[name=user_description]').val('{{ g.user.description }}');
+        })
+    </script>
+{% endblock %}
+
+{% block title %}设置中心 - Secret{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="settings_page">
+            <div class="return_home">
+                <a href="{{ url_for('user_blue.user_home', user_id=g.user.uid_md5) }}">
+                    <i class="iconfont icon-xiangzuojiantou"></i>
+                    返回个人主页
+                </a>
+            </div>
+            <div class="settings_box">
+                <div class="settings_left">
+                    <a href="javascript:void(0)" id="personal_information_btn">
+                        <i class="iconfont icon-gerenziliao-tongxunlu-02"></i>个人资料
+                    </a>
+                    <a href="javascript:void(0)" id="Account_Settings_btn">
+                        <i class="iconfont icon-shezhi-04"></i>账号设置
+                    </a>
+                </div>
+                <div class="settings_right">
+                    <div class="settings_item" id="personal_information">
+                        <h1 class="nav_text">个人资料</h1>
+                        <div class="settings_container">
+                            <div class="settings_content">
+                                <form class="layui-form" action="{{ url_for('user_blue.upload') }}" method="post">
+                                    <div class="divide"></div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">用户名</label>
+                                        <div class="layui-input-block">
+                                            <input type="text" name="username" lay-verify=""
+                                                   placeholder="填写你的用户名（20字以内）" autocomplete="off"
+                                                   class="layui-input" id="username_input">
+                                            <span class="words_num"
+                                                  id="yonghuming">{{ g.user.username|length }}/20</span>
+                                        </div>
+                                    </div>
+                                    <div class="divide"></div>
+                                    <div class="layui-form-item layui-form-text">
+                                        <label class="layui-form-label">个人介绍</label>
+                                        <div class="layui-input-block">
+                                            <textarea name="user_description" autoHeight="true"
+                                                      placeholder="填写职业技能、擅长的事情、喜欢的事情等（100字以内）"
+                                                      autocomplete="off"
+                                                      class="layui-textarea" style="overflow: hidden;"
+                                                      id="des_textarea" lay-verify=""></textarea>
+                                            <span class="words_num1"
+                                                  id="miaoshu">{{ g.user.description|length }}/100</span>
+                                        </div>
+                                    </div>
+                                    <div class="divide"></div>
+                                    <div class="layui-form-item">
+                                        <div class="layui-input-block">
+                                            <button type="button" class="layui-btn layui-btn-normal" lay-submit
+                                                    lay-filter="commit_edit" id="commit_edit">保存修改
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="settings_avatar">
+                                <div class="avatar_upload">
+                                    <img class='avatar_upload_img' src="{{ g.user.avatar }}">
+                                    <div class="avatar_upload_shadow">
+                                        <i class="layui-icon layui-icon-add-circle"></i>
+                                        <div class="click-text">点击修改头像</div>
+                                    </div>
+                                </div>
+                                <div class="my_avatar">我的头像</div>
+                                <div class="my_avatar_format">支持 jpg、png、jpeg 格式大小 5M 以内的图片</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="settings_item" id="Account_Settings" style="display: none;">
+                        <h1 class="nav_text">账号设置</h1>
+                        <div class="settings_container">
+                            <div class="settings_content" style="width: 100%;font-size: 15px">
+                                <div class="divide" style="margin-left: 0;"></div>
+                                <div class="line_account">
+                                    <div class="item1">邮箱</div>
+                                    <div class="item2">{{ user.email }}</div>
+                                    <div class="item3">换绑</div>
+                                </div>
+                                <div class="divide" style="margin-left: 0;"></div>
+                                <div class="line_account">
+                                    <div class="item1">手机</div>
+                                    <div class="item2">{{ user.email }}</div>
+                                    <div class="item3">换绑</div>
+                                </div>
+                                <div class="divide" style="margin-left: 0;"></div>
+                                <div class="line_account">
+                                    <div class="item1">微信</div>
+                                    <div class="item2">{{ user.email }}</div>
+                                    <div class="item3">换绑</div>
+                                </div>
+                                <div class="divide" style="margin-left: 0;"></div>
+                                <div class="line_account">
+                                    <div class="item1">密码</div>
+                                    <div class="item2">{{ user.email }}</div>
+                                    <div class="item3">重置</div>
+                                </div>
+                                <div class="divide" style="margin-left: 0;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

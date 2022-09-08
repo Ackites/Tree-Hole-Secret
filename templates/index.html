@@ -1,0 +1,95 @@
+{% extends  "base.html" %}
+
+{% block title %}Secret - 我们的情感树洞{% endblock %}
+
+{% block head %}
+    <script src="{{ url_for('static',filename='js/index.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/blocksit.min.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="carousel box_shadow fl">
+            <div class="carousel_title"><i class="iconfont icon-remen"></i>热门活动</div>
+            <hr>
+            <div class="layui-carousel" id="index_carousel">
+                <div carousel-item>
+                    <div><img src="//img.ui.cn/data/upload/202203/1647598540_243?imageView/1/w/1480/h/350"></div>
+                    <div><img src="//img13.360buyimg.com/ling/s800x482_jfs/t1/192807/8/24929/306032/6294a43dEc2a244a5/b0e03f87237b5c55.jpg.webp"></div>
+                    <div><img src="//img14.360buyimg.com/ling/s900x1362_jfs/t1/196760/20/14310/2000181/60fa6c31Ea158f402/26383fa6812ddd3d.jpg!cc_450x681.webp"></div>
+                </div>
+            </div>
+        </div>
+        <div class="index_hot box_shadow fr">
+            <div class="carousel_title"><i class="iconfont icon-daochu1024-02" style="vertical-align: bottom;"></i>热榜</div>
+            <hr>
+            <div class="hot_list">
+                <div class="hot_item">
+                    <span class="hot_number">1</span>
+                    <a class="hot_title" href="javascript:void(0)">你是我的姐</a>
+                    <a class="hot_des" href="javascript:void(0)">乞讨式霸总发言</a>
+                </div>
+                <div class="hot_item">
+                    <span class="hot_number">2</span>
+                    <a class="hot_title" href="javascript:void(0)">我删掉了xx</a>
+                    <a class="hot_des" href="javascript:void(0)">一段演讲视频</a>
+                </div>
+                <div class="hot_item">
+                    <span class="hot_number">3</span>
+                    <a class="hot_title" href="javascript:void(0)">连夜把书读烂</a>
+                    <a class="hot_des" href="javascript:void(0)">不能吃没文化的亏</a>
+                </div>
+                <div class="hot_item">
+                    <span class="hot_number">4</span>
+                    <a class="hot_title" href="javascript:void(0)">测试 4</a>
+                    <a class="hot_des" href="javascript:void(0)">看看</a>
+                </div>
+                <div class="hot_item">
+                    <span class="hot_number">5</span>
+                    <a class="hot_title" href="javascript:void(0)">测试 5</a>
+                    <a class="hot_des" href="javascript:void(0)">看看</a>
+                </div>
+                <div class="hot_item">
+                    <span class="hot_number">6</span>
+                    <a class="hot_title" href="javascript:void(0)">测试 6</a>
+                    <a class="hot_des" href="javascript:void(0)">看看</a>
+                </div>
+                <div class="hot_item">
+                    <span class="hot_number">7</span>
+                    <a class="hot_title" href="javascript:void(0)">测试 7</a>
+                    <a class="hot_des" href="javascript:void(0)">看看</a>
+                </div>
+                <div class="hot_item">
+                    <span class="hot_number">8</span>
+                    <a class="hot_title" href="javascript:void(0)">测试 8</a>
+                    <a class="hot_des" href="javascript:void(0)">看看</a>
+                </div>
+                <div class="hot_item">
+                    <span class="hot_number">9</span>
+                    <a class="hot_title" href="javascript:void(0)">测试 9</a>
+                    <a class="hot_des" href="javascript:void(0)">看看</a>
+                </div>
+                <div class="hot_item">
+                    <span class="hot_number">10</span>
+                    <a class="hot_title" href="javascript:void(0)">测试 10</a>
+                    <a class="hot_des" href="javascript:void(0)">看看</a>
+                </div>
+                <div class="hot_item">
+                    <span class="hot_number">11</span>
+                    <a class="hot_title" href="javascript:void(0)">测试 11</a>
+                    <a class="hot_des" href="javascript:void(0)">看看</a>
+                </div>
+                <div class="hot_item">
+                    <span class="hot_number">12</span>
+                    <a class="hot_title" href="javascript:void(0)">测试 12</a>
+                    <a class="hot_des" href="javascript:void(0)">看看</a>
+                </div>
+            </div>
+        </div>
+        <div class="article_container">
+            <div class="carousel_title"><i class="iconfont icon-faxian"></i>情感卡片</div>
+            <hr>
+            <div id="card_container"></div>
+        </div>
+    </div>
+{% endblock %}

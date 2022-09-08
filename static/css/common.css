@@ -1,0 +1,464 @@
+/*全局配置*/
+body {
+    background: #fafafa;
+    min-width: 1260px;
+}
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.box_shadow {
+    -webkit-box-shadow: 0 4px 15px rgba(0, 0, 0, .04);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, .04);
+}
+
+/*全局配置*/
+
+/*头部导航*/
+.container {
+    max-width: 1260px;
+    margin: 0 auto;
+    width: 1260px;
+}
+
+.header {
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    height: 65px;
+    padding: 5px 120px;
+    margin-bottom: 20px;
+}
+
+.header_fixed {
+    position: fixed;
+    z-index: 999;
+    -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, .1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .1);
+    height: 50px;
+    transition: all .3s;
+    -webkit-transition: all .3s;
+    opacity: 0.9;
+}
+
+.logo_img {
+    width: 100px;
+}
+
+.header_nav {
+    display: flex;
+    justify-content: center;
+}
+
+.ul_nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.ul_nav_a {
+    color: #3D7EFF;
+}
+
+.header_nav ul > .ul_nav_a > a {
+    color: #3D7EFF;
+}
+
+.header_nav > ul > li {
+    font-size: 14px;
+}
+
+.header_nav > ul > li > a {
+    color: #6e6e7a;
+    padding: 26px 20px 28px;
+    transition: all .1s linear;
+}
+
+.header_nav > ul > li > a.pad {
+    padding: 20px 20px 20px;
+}
+
+.header_nav > ul > li > a:hover {
+    color: #3D7EFF;
+    box-shadow: 0 0 2px rgba(0, 0, 0, .1);
+    border-top: 4px solid #3D7EFF;
+    font-weight: 600;
+}
+
+.header_user {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #8a8a98;
+    border-radius: 15px;
+    height: 30px;
+    margin-right: 20px;
+}
+
+.search-btn {
+    height: 28px;
+    width: 28px;
+    line-height: 28px;
+    text-align: center;
+    border-radius: 50%;
+    padding: 5px;
+}
+
+.search_input {
+    outline: none;
+    border: none;
+    background: none;
+    width: 0;
+    padding: 0;
+    transition: width 0.5s;
+}
+
+.wrap:hover > .search_input {
+    width: 240px;
+}
+
+.user_btn {
+    line-height: 30px;
+    height: 30px;
+    width: 90px;
+    padding: 0 12px;
+}
+
+.user_avatar_btn {
+    border-radius: 50%;
+    border: 1px solid #fff;
+    outline: none;
+    margin-right: 20px;
+    height: 40px;
+    width: 40px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+/*头部导航*/
+
+/*登录弹出框*/
+.user_login {
+    display: none;
+    padding: 24px;
+}
+
+.user_title {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.field_css {
+    border-radius: 10px;
+}
+
+.field_css > legend {
+    font-size: 15px;
+}
+
+.form_input {
+    outline: none;
+    border: none;
+    background: none;
+    padding-bottom: 5px;
+    padding-left: 15px;
+    font-size: 20px;
+}
+
+.login-p {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 10px;
+    height: 18px;
+    color: #6e6e7a;
+}
+
+.login-p a {
+    color: #4a90e2;
+}
+
+/* 猫头鹰样式 */
+.owl {
+    width: 211px;
+    height: 108px;
+    background-image: url("../images/owl-login.png");
+    /* 绝对定位 */
+    position: absolute;
+    top: -100px;
+    /* 水平居中 */
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.owl .hand {
+    width: 34px;
+    height: 34px;
+    border-radius: 40px;
+    background-color: #472d20;
+    /* 缩放0.6倍 */
+    transform: scaleY(0.6);
+    /* 动画过渡 */
+    transition: 0.3s ease-out;
+    position: absolute;
+    left: 12px;
+    bottom: -8px;
+}
+
+.owl .hand.hand-r {
+    left: 170px;
+}
+
+.owl.password .hand {
+    transform: translateX(42px) translateY(-15px) scale(0.7);
+}
+
+.owl.password .hand.hand-r {
+    transform: translateX(-42px) translateY(-15px) scale(0.7);
+}
+
+.owl .arms {
+    top: 58px;
+    position: absolute;
+    width: 100%;
+    height: 41px;
+    overflow: hidden;
+}
+
+.owl .arms .arm {
+    width: 40px;
+    height: 65px;
+    position: absolute;
+    left: 20px;
+    top: 40px;
+    background-image: url("../images/owl-login-arm.png");
+    transform: rotate(-20deg);
+    transition: 0.3s ease-out;
+}
+
+.owl .arms .arm.arm-r {
+    transform: rotate(20deg) scaleX(-1);
+    left: 158px;
+}
+
+.owl.password .arms .arm {
+    transform: translateY(-40px) translateX(40px);
+}
+
+.owl.password .arms .arm.arm-r {
+    transform: translateY(-40px) translateX(-40px) scaleX(-1);
+}
+
+/*登录弹出框*/
+
+/*主体部分*/
+.carousel {
+    width: 500px;
+    height: 330px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+.index_hot {
+    width: 690px;
+    height: 330px;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.hot_list {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 20px 16px 0;
+    margin-top: 20px;
+}
+
+.hot_item {
+    position: relative;
+    width: 20%;
+    padding-left: 45px;
+    margin-bottom: 20px;
+}
+
+.hot_number img {
+    width: 30px;
+}
+
+.hot_number {
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 30px;
+    font-weight: 600;
+    color: #ffba52;
+    line-height: 26px;
+}
+
+.hot_title {
+    display: block;
+    font-size: 15px;
+    line-height: 20px;
+    color: #474747;
+    font-weight: 500;
+    margin-bottom: 6px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.hot_des {
+    display: block;
+    font-size: 14px;
+    line-height: 16px;
+    font-weight: 400;
+    color: #a5a5a5;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.article_container {
+    clear: both;
+    padding-top: 20px;
+    margin-bottom: 25px;
+}
+
+.carousel_title {
+    padding: 0 5px 0;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.carousel_title i {
+    font-weight: 500;
+    font-size: 25px;
+    padding: 0 5px;
+}
+
+#card_container {
+    position: relative;
+}
+
+.lite_card {
+    max-width: 300px;
+    background: #fff;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+}
+
+/*主体部分*/
+
+/*尾部部分*/
+.footer {
+    background-color: #fff;
+    font-size: 12px;
+    color: #a5a5a5;
+    padding: 30px 0;
+    margin-top: 20px;
+}
+
+.footer .container {
+    display: flex;
+    justify-content: center;
+}
+
+.web_footer {
+    width: 40%;
+}
+
+.web_footer:first-child {
+    border-right: 1px solid #d8d8d8;
+}
+
+.footer .dec_css {
+    text-align: center;
+    padding: 5px;
+}
+
+/*尾部部分*/
+
+/*侧边按钮*/
+
+.sidebar {
+    position: fixed;
+    right: 75px;
+    bottom: 120px;
+    text-align: center;
+}
+
+.sidebar li {
+    background: #fff;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    margin-bottom: 20px;
+    line-height: 25px;
+    padding: 10px;
+    z-index: 500;
+    cursor: pointer;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, .2);
+}
+
+.sidebar li:last-child {
+    margin-bottom: 0;
+}
+
+/*侧边按钮*/
+
+/*avatar 点击*/
+
+.avatar_click {
+    position: fixed;
+    right: 105px;
+    top: 75.5px;
+    background: #fff;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 5px 20px rgba(18, 18, 18, .1);
+    box-shadow: 0 5px 20px rgba(18, 18, 18, .1);
+    z-index: 9999;
+}
+
+.triangle {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    background: #fff;
+    transform: translate(173%, -25%) rotate(45deg);
+    -webkit-box-shadow: 0 -18px 47px rgba(18, 18, 18, .1);
+    box-shadow: 0 -18px 47px rgba(18, 18, 18, .1);
+}
+
+.div_avatar {
+    padding: 15px;
+}
+
+.a_avatar {
+    display: block;
+    color: rgb(133, 144, 166);
+    padding: 10px 0;
+}
+
+.a_avatar i {
+    margin-right: 6px;
+}
+
+/*avatar 点击*/

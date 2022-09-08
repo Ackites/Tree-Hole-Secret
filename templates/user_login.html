@@ -1,0 +1,139 @@
+<div class="user_login">
+    <div id="owl" class="owl">
+        <div class="hand"></div>
+        <div class="hand hand-r"></div>
+        <div class="arms">
+            <div class="arm"></div>
+            <div class="arm arm-r"></div>
+        </div>
+    </div>
+    <div id="login">
+        <fieldset class="layui-elem-field layui-field-title">
+            <legend style="text-align: center;padding-right: 50px"><h1 class="user_title">用户登录</h1></legend>
+        </fieldset>
+        <form class="layui-form" action="{{ url_for('user_blue.login') }}" id="login_form" method="post">
+            <div class="layui-form-item">
+                <fieldset class="layui-elem-field field_css">
+                    <legend>登录邮箱</legend>
+                    <input type="text" name="email" required lay-verify="email"
+                           autocomplete="off"
+                           class="layui-input form_input">
+                </fieldset>
+            </div>
+            <div class="layui-form-item">
+                <fieldset class="layui-elem-field field_css">
+                    <legend>密码</legend>
+                    <input type="password" name="password" required lay-verify=""
+                           autocomplete="off" class="layui-input form_input password_owl">
+                </fieldset>
+            </div>
+            <p class="login-p">
+                <a class="re_retrieve" href="javascript:void(0)">忘记密码？</a>
+                <span class="fr">新用户？<a class="re_register" href="javascript:void(0)">注册</a></span>
+            </p>
+            <div class="layui-form-item">
+                <button type="button" class="field_css layui-btn layui-btn-normal layui-btn-fluid"
+                        lay-submit lay-filter="login_btn" id="login_btn">立即登录
+                </button>
+            </div>
+        </form>
+    </div>
+    <div id="register" style="display: none;">
+        <fieldset class="layui-elem-field layui-field-title">
+            <legend style="text-align: center;padding-right: 50px"><h1 class="user_title">用户注册</h1></legend>
+        </fieldset>
+        <form class="layui-form" action="{{ url_for('user_blue.register') }}" id="register_form" method="post">
+            <div class="layui-form-item">
+                <fieldset class="layui-elem-field field_css">
+                    <legend>登录邮箱</legend>
+                    <input type="text" name="email" required lay-verify="email"
+                           autocomplete="off"
+                           class="layui-input form_input">
+                </fieldset>
+            </div>
+            <div class="layui-form-item">
+                <fieldset class="layui-elem-field field_css">
+                    <legend>密码</legend>
+                    <input type="password" name="password" required lay-verify="password"
+                           autocomplete="off" class="layui-input form_input password_owl">
+                </fieldset>
+            </div>
+            <div class="layui-form-item">
+                <fieldset class="layui-elem-field field_css">
+                    <legend>确认密码</legend>
+                    <input type="password" name="che_password" required lay-verify="check_password"
+                           autocomplete="off" class="layui-input form_input password_owl">
+                </fieldset>
+            </div>
+            <div class="layui-form-item">
+                <fieldset class="layui-elem-field field_css" style="display:flex;">
+                    <legend>验证码</legend>
+                    <input type="text" name="checkCode" required lay-verify=""
+                           autocomplete="off" class="layui-input form_input">
+                    <b class="captcha_btn"
+                       style="font-size: 12px;margin-right:10px;width: 90px;padding-top: 8px;cursor: pointer;">
+                        发送验证码
+                    </b>
+                </fieldset>
+            </div>
+            <p class="login-p">
+                <a class="re_retrieve" href="javascript:void(0)">忘记密码？</a>
+                <span class="fr">已有账号？<a class="re_login" href="javascript:void(0)">登录</a></span>
+            </p>
+            <div class="layui-form-item">
+                <button type="button" class="field_css layui-btn layui-btn-normal layui-btn-fluid"
+                        lay-submit lay-filter="register_btn" id="register_btn">立即注册
+                </button>
+            </div>
+        </form>
+    </div>
+    <div id="retrieve" style="display: none;">
+        <fieldset class="layui-elem-field layui-field-title">
+            <legend style="text-align: center;padding-right: 50px"><h1 class="user_title">找回密码</h1></legend>
+        </fieldset>
+        <form class="layui-form" action="{{ url_for('user_blue.retrieve') }}" id="retrieve_form" method="post">
+            <div class="layui-form-item">
+                <fieldset class="layui-elem-field field_css">
+                    <legend>登录邮箱</legend>
+                    <input type="text" name="email" required lay-verify="email"
+                           autocomplete="off"
+                           class="layui-input form_input">
+                </fieldset>
+            </div>
+            <div class="layui-form-item">
+                <fieldset class="layui-elem-field field_css">
+                    <legend>新密码</legend>
+                    <input type="password" name="password" required lay-verify="password"
+                           autocomplete="off" class="layui-input form_input password_owl">
+                </fieldset>
+            </div>
+            <div class="layui-form-item">
+                <fieldset class="layui-elem-field field_css">
+                    <legend>确认新密码</legend>
+                    <input type="password" name="che_password" required lay-verify="check_password2"
+                           autocomplete="off" class="layui-input form_input password_owl">
+                </fieldset>
+            </div>
+            <div class="layui-form-item">
+                <fieldset class="layui-elem-field field_css" style="display:flex;">
+                    <legend>验证码</legend>
+                    <input type="text" name="checkCode" required lay-verify=""
+                           autocomplete="off" class="layui-input form_input">
+                    <b class="captcha_btn"
+                       style="font-size: 12px;margin-right:10px;width: 90px;padding-top: 8px;cursor: pointer;">
+                        发送验证码
+                    </b>
+                </fieldset>
+            </div>
+            <p class="login-p">
+                <span class="fl">已有账号？<a class="re_login" href="javascript:void(0)">登录</a></span>
+                <span class="fr">新用户？<a class="re_register" href="javascript:void(0)">注册</a></span>
+            </p>
+            <div class="layui-form-item">
+                <button type="button" class="field_css layui-btn layui-btn-normal layui-btn-fluid"
+                        lay-submit lay-filter="retrieve_btn" id="retrieve_btn">确认
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
